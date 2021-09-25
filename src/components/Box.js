@@ -1,8 +1,8 @@
-import React, { useMemo, useRef, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
+import React, { useMemo, useRef, useState } from "react";
+import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 
-import logo from '../assets/logo.png';
+import logo from "../assets/logo.png";
 
 /**
  * Attachs a static mesh to 3D rotating box. 
@@ -27,14 +27,14 @@ const Box = (props) => {
 
   return (
     <mesh
-      {...props}
-      ref={mesh}
-      scale={active ? [2, 2, 2] : [1.5, 1.5, 1.5]} // Size changes when user clicks the box.
-      onClick={() => setActive(!active)}
+      { ...props }
+      onClick={ () => setActive(!active) }
+      ref={ mesh } // Size changes when user clicks the box.
+      scale={ active ? [2, 2, 2] : [1.5, 1.5, 1.5] }
     >
-      <boxBufferGeometry args={[2, 2, 2]} />
-      <meshBasicMaterial attach="material" side={THREE.DoubleSide}>
-        <primitive attach="map" object={texture} />
+      <boxBufferGeometry args={ [2, 2, 2] } />
+      <meshBasicMaterial attach="material" side={ THREE.DoubleSide }>
+        <primitive attach="map" object={ texture } />
       </meshBasicMaterial>
     </mesh>
   );

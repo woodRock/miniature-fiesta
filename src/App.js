@@ -1,6 +1,6 @@
-import './App.css';
-import React from 'react';
-import Map from './pages/Map';
+import "./App.css";
+import React from "react";
+import Map from "./pages/Map";
 
 const App = () => {
   return (
@@ -8,6 +8,6 @@ const App = () => {
       <Map />
     </div>
   );
-}
+};
 
 export default App;
