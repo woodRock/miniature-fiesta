@@ -20,13 +20,13 @@ const location = [-41.31, 174.79];
 const markers = [
     { 
         name: 'Victoria University of Wellington', 
-        position: [-41.28666552, 174.772996908],
+        position: [-41.28993225097656,174.7685546875],
         image: "https://i1.sndcdn.com/avatars-000751225282-2lnuu5-original.jpg",
         type: "work"
     },
     { 
         name: 'Wellington Chamber Of Commerce', 
-        position: [-41.28993225097656,174.7685546875],
+        position: [-41.28666552, 174.772996908],
         image: "https://www.wecc.org.nz/__data/assets/image/0009/3312/bg-chamber-header.png",
         type: "work"
     },
