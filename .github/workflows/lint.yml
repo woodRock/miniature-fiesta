@@ -2,7 +2,7 @@ name: Lint
 on:
   push:
     branches:
-      - dev
+      - main
     paths:
       - src/*
 jobs:
