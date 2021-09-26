@@ -2,8 +2,9 @@ import React from "react";
 import { Circle, LayerGroup, LayersControl, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Link } from "react-router-dom"; 
 import PropTypes from "prop-types";
+import Legend from "./Legend";
 
-// Marker icon fix for React (source: https://bit.ly/39AdJb9)
+// Marker icon fix for react-leaflet (source: https://bit.ly/39AdJb9)
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import icon from "leaflet/dist/images/marker-icon.png";
@@ -11,9 +12,10 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow,
-    iconAnchor: [13, 40] // Center icons (source: https://bit.ly/3AKGgXw)
+    iconAnchor: [13, 40] // Center customer marker icon (source: https://bit.ly/3AKGgXw)
 });
 L.Marker.prototype.options.icon = DefaultIcon;
+// --------------------------------------------------
 
 /**
  * Display a map with a set of markers at a given location.
@@ -21,30 +23,29 @@ L.Marker.prototype.options.icon = DefaultIcon;
  * @param {NewType, markers} param0 - default location, and markers for map.
  * @returns Leaflet map with markers.
  */
-const MarkerMap = ({ location, markers }) => {
-    return (
-      <MapContainer center={ location } scrollWheelZoom={ false } zoom={ 13 }>
-        <LayersControl position="topright">
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {types.map(t => (
-            <LayersControl.Overlay checked key={ t } name={ t }>
-              <LayerGroup>
-                {  
+const MarkerMap = ({ location, markers }) => (
+  <MapContainer center={ location } scrollWheelZoom={ false } zoom={ 13 }>
+    <LayersControl position="topright">
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <Legend colors={ colors } types={ types } />
+      {types.map(t => (
+        <LayersControl.Overlay checked key={ t } name={ t }>
+          <LayerGroup>
+            {  
                         markers.filter(({ type }) => t == type)
                         .map(marker => (
                           <MapMarker { ...marker } key={ t } />
                         ))
                         }
-              </LayerGroup>
-            </LayersControl.Overlay>
+          </LayerGroup>
+        </LayersControl.Overlay>
                 ))}
-        </LayersControl>
-      </MapContainer>
-    );
-};
+    </LayersControl>
+  </MapContainer>
+);
 
 MarkerMap.propTypes = {
   location: PropTypes.array.isRequired,
@@ -57,7 +58,6 @@ const types = ["school", "work", "interest"];
 /**
  * Constructs the customized marker for each location.
  * @param {name, position, image, type} param0 
- * @returns Leaflet marker with popup.
  */
 const MapMarker = ({ name, position, image, type }) => (
   <Marker key={ name } position={ position }>
@@ -69,7 +69,7 @@ const MapMarker = ({ name, position, image, type }) => (
                     height: "50px",
                     justifyContent: "center",
                     alignItems: "center",
-                } }
+              } }
       />
       <br />
       {name}
@@ -79,7 +79,7 @@ const MapMarker = ({ name, position, image, type }) => (
     <Circle
       center={ position }
       pathOptions={ { color: colors[type], fillColor: colors[type] } }
-      // Draws inner and outer circle for duplicates.
+      // Draws concentric rings for duplicate locations.
       radius={ isDuplicate(type, name)? 170 : 100 }
       weight={ 5 }
     />
@@ -89,7 +89,7 @@ const MapMarker = ({ name, position, image, type }) => (
 MapMarker.propTypes = {
   name: PropTypes.string.isRequired,
   position: PropTypes.array.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired, 
   type: PropTypes.string.isRequired,
 };
 
@@ -101,11 +101,13 @@ const colors = {
 };
 
 /**
- * A location can fit into two types (i.e. school and work).
- **/
+ * Checks if location is a duplicate. 
+ * @param {*} type (i.e. school, work, interest)
+ * @param {*} name of the location.
+ * @returns true if duplicate, false otherwise.
+ */
 const isDuplicate = (type, name) => {
   return type == "work" && name == "Victoria University of Wellington";
 };
-
 
 export default MarkerMap;

@@ -4,14 +4,10 @@ import MarkerMap from "../components/MarkerMap";
 /**
  * A Map of Wellington with markers for locations of interest.
  * For example: current workplace, schools, university. 
- * 
- * @returns {React.Component}
  */
-const Map = () => {
-    return (
-      <MarkerMap location={ location } markers={ markers } />
-    );
-};
+const Map = () => (
+  <MarkerMap location={ location } markers={ markers } />
+);
 
 // GPS coordinates of Wellington.
 const location = [-41.31, 174.79]; 
