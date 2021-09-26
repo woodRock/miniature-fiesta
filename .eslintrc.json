@@ -27,7 +27,7 @@
             "double"
         ],
         // React
-        "react/forbid-prop-types": "error",
+        // "react/forbid-prop-types": "error",
         "react/no-multi-comp": [
             "error",
             {
@@ -42,7 +42,7 @@
         "react/require-render-return": "error",
         "react/self-closing-comp": "error",
         "react/sort-comp": "error",
-        "react/sort-prop-types": "error",
+        // "react/sort-prop-types": "error",
         // "react/wrap-multilines": "error",
         // JSX
         "react/jsx-boolean-value": "error",
