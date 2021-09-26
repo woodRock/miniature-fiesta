@@ -59,18 +59,20 @@ const types = ["school", "work", "interest"];
  * Constructs the customized marker for each location.
  * @param {name, position, image, type} param0 
  */
-const MapMarker = ({ name, position, image, type }) => (
+const MapMarker = ({ name, position, image, url, type }) => (
   <Marker key={ name } position={ position }>
     <Popup>
-      <img
-        alt={ name }
-        src={ image }
-        style={ {
+      <a href={ url }>
+        <img
+          alt={ name }
+          src={ image }
+          style={ {
                     height: "50px",
                     justifyContent: "center",
                     alignItems: "center",
               } }
-      />
+        />
+      </a>
       <br />
       {name}
       <br />
@@ -90,6 +92,7 @@ MapMarker.propTypes = {
   name: PropTypes.string.isRequired,
   position: PropTypes.array.isRequired,
   image: PropTypes.string.isRequired, 
+  url: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
 };
 
