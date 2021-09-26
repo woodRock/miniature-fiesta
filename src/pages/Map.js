@@ -45,7 +45,7 @@ const markers = [
     { 
         name: "SWIS Intermediate School", 
         position: [-41.3183829,174.7789825],
-        image: "https://i.imgur.com/Qlf29ue.jpeg", // Fix this.
+        image: "https://i.imgur.com/Qlf29ue.jpeg",
         type: "school"
     },
     { 

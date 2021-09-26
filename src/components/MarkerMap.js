@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Circle, LayerGroup, LayersControl, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { Link } from "react-router-dom"; 
 
 // Marker icon fix for React (source: https://bit.ly/39AdJb9)
 import "leaflet/dist/leaflet.css";
@@ -75,6 +76,8 @@ const MapMarker = ({ name, position, image, type }) => (
       />
       <br />
       {name}
+      <br />
+      <Link to={ "/dice" }> See more</Link>
     </Popup>
     <Circle
       center={ position }
