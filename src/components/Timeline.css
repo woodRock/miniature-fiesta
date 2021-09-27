@@ -2,7 +2,11 @@ html, body {
     overflow-x: hidden;
     background: #d8d5d5;
 }
-  
+
+.timeline {
+    text-align: left;
+}
+
 .github-corner svg {
     z-index: 1000;
 }
@@ -21,6 +25,8 @@ html, body {
 
 .vertical-timeline-element-date {
     color: #333;
+    position: relative;
+    left: 0;
 }
 
 /* CUSTOM LINE COLOR */
