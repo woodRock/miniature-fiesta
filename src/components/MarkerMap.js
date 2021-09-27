@@ -76,7 +76,7 @@ const MapMarker = ({ name, position, image, url, type }) => (
       <br />
       {name}
       <br />
-      <Link to={ "/dice" }> See more</Link>
+      <Link to={ "/timeline" }> See more</Link>
     </Popup>
     <Circle
       center={ position }
@@ -98,8 +98,8 @@ MapMarker.propTypes = {
 
 // Color dictionary for markers.
 const colors = {
-  school: "red",
-  work: "green",
+  school: "#c2185b",
+  work: "#1976d2",
   interest: "purple"
 };
 
@@ -114,3 +114,4 @@ const isDuplicate = (type, name) => {
 };
 
 export default MarkerMap;
+export {types, colors};
